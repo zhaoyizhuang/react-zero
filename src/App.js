@@ -1,25 +1,49 @@
-import logo from './logo.svg';
+import {SubmitButton} from "./component/button/submitButton";
 import './App.css';
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [load, setLoad] = useState(false);
+
+    const submit = () => {
+        setLoad(true);
+        setTimeout(() => {setLoad(false)}, 1000); //set timeout to see the animation
+    }
+    return (
+        <div>
+            <div className={'placeholder'}>
+
+            </div>
+            <form className={'form'}>
+                <div className="form-control">
+                    <div>Name</div>
+                    <input type="text"
+                           placeholder={'FirstName LastName'}/>
+                </div>
+
+                <div className="form-control">
+                    <div>Zip</div>
+                    <input type="text"
+                           placeholder={'Zip'}/>
+                </div>
+
+                <div className="form-control">
+                    <div>Result</div>
+                    <div className={'placeholder'}></div>
+                </div>
+
+                <div className="form-control">
+                    <div/>
+                    <div className={'save'}>
+                        {<SubmitButton type={'button'}
+                                       words={'Search'}
+                                       event={submit}
+                                       state={load}/>}
+                    </div>
+                </div>
+            </form>
+        </div>
+    )
 }
 
 export default App;
